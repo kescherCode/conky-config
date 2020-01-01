@@ -11,3 +11,5 @@ Requirements:
 - yay (optional, for updates)
 
 All files are intended to be located at ~/.config/conky/. If you want a different path, you will have to change it in each file.
+
+![screenshot](screenshot.png)
