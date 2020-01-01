@@ -1,0 +1,105 @@
+conky.config = {
+	background = true,
+
+	own_window_argb_visual = true,
+	own_window_type = 'dock',
+	own_window = true,
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	double_buffer = true,
+	override_utf8_locale = true,
+	use_xft = true,
+	font = 'DejaVu Sans Mono:size=10',
+	xftalpha = 1.0,
+	update_interval = 2,
+	uppercase = false,
+	default_outline_color = 'black',
+	default_shade_color = 'black',
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+	temperature_unit = 'celsius',
+
+	text_buffer_size = 256,-- 256 is minimum
+	no_buffers = true,
+	short_units = true,
+	pad_percents = 2,
+	top_name_width = 10,
+
+	alignment = 'middle_right',
+	gap_x = 10,
+	gap_y = 0,
+
+	minimum_width = 230, minimum_height = 5,
+	maximum_width = 500,
+
+	color0 = '00b386',
+	color1 = 'BBBBBB',
+	color2 = 'FF0000',
+
+	own_window_argb_value = 160,
+	own_window_colour = '000000',
+
+};
+
+conky.text = [[
+${font Noto Sans Mono:size=12}${color1}SYSTEM${font} ${color0}$hr${color1}
+
+ Host${alignr}${color0}${nodename}${color1}
+ Kernel${alignr}${color0}${texeci 99999 uname -r}${color1}
+ Uptime${alignr}${color0}${uptime}${color1}
+ Battery: ${battery}
+${if_match ${battery_percent} < 15}${color red}${else}\
+${if_match ${battery_percent} < 25}${color orange}${else}\
+${if_match ${battery_percent} < 35}${color yellow}${else}\
+${if_match ${battery_percent} < 90}${color1}${else}\
+${color green}${endif}${endif}${endif}${endif}\
+${alignr}${battery_bar 10,180}${color}
+ ${if_match "${battery_time}"!=""}${color1}Remaining: ${alignr}${battery_time}${else}${endif}
+
+${font Noto Sans Mono:size=12}${color1}CPU${font} ${color0}$hr${color1}
+
+# Adjust the `cut` and thread count for your own CPU model
+ ${texeci 99999 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-18}
+ Frequency${alignr}${color0}${freq_g} GHz${color1}
+ Temperature${alignr}${color0}${hwmon temp 1}°C${color1}
+ Load: ${alignr}${color0}$cpu%${color1}
+  1 ${color0}${cpubar cpu1 10,130}${alignr}${cpu cpu1}%${color1}
+  2 ${color0}${cpubar cpu2 10,130}${alignr}${cpu cpu2}%${color1}
+  3 ${color0}${cpubar cpu3 10,130}${alignr}${cpu cpu3}%${color1}
+  4 ${color0}${cpubar cpu4 10,130}${alignr}${cpu cpu4}%${color1}
+  5 ${color0}${cpubar cpu5 10,130}${alignr}${cpu cpu5}%${color1}
+  6 ${color0}${cpubar cpu6 10,130}${alignr}${cpu cpu6}%${color1}
+  7 ${color0}${cpubar cpu7 10,130}${alignr}${cpu cpu7}%${color1}
+  8 ${color0}${cpubar cpu8 10,130}${alignr}${cpu cpu8}%${color1}
+  
+ Usage (${threads} processes${color1})
+  ╠ ${top name 1}$alignr${color0}${top cpu 1}%${color1}
+  ╠ ${top name 2}$alignr${color0}${top cpu 2}%${color1}
+  ╠ ${top name 3}$alignr${color0}${top cpu 3}%${color1}
+  ╠ ${top name 4}$alignr${color0}${top cpu 4}%${color1}
+  ╚ ${top name 5}$alignr${color0}${top cpu 5}%${color1}
+
+${font Noto Sans Mono:size=12}${color1}MEMORY${font} ${color0}$hr${color1}
+
+ RAM${alignr}${color0}${mem} of ${memmax}${color1}
+ $memperc% ${color0}${membar 10}${color1}
+# Comment swap out if you don't have swap
+ Swap${alignr}${color0}${swap} of ${swapmax}${color1}
+ $swapperc% ${color0}${swapbar 10}${color1}
+ 
+ Usage (${threads} processes${color1})
+  ╠ ${top_mem name 1}${alignr}${color0}${top_mem mem_res 1}${color1}
+  ╠ ${top_mem name 2}${alignr}${color0}${top_mem mem_res 2}${color1}
+  ╠ ${top_mem name 3}${alignr}${color0}${top_mem mem_res 3}${color1}
+  ╠ ${top_mem name 4}${alignr}${color0}${top_mem mem_res 4}${color1}
+  ╚ ${top_mem name 5}${alignr}${color0}${top_mem mem_res 5}${color1}
+
+${font Noto Sans Mono:size=12}${color1}UPDATES${font} ${color0}$hr${color1}
+
+# Requires the `yay` package manager to be installed (a wrapper for pacman).
+ ${color1}Repositories${alignr}${color0}${texeci 3600 yay --repo -Qyu | wc -l} updates
+# Comment out the line below if you don't use AUR packages
+ ${color1}AUR${alignr}${color0}${texeci 3600 yay --aur -Qyu | wc -l} updates]];
