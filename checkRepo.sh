@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-UPDATES=`yay --repo -Qyu | wc -l`
+UPDATES=`checkupdates | wc -l`
 if [[ $UPDATES -lt 1 ]]; then
     echo "\${color1}$UPDATES"
 elif [[ $UPDATES -lt 5 ]]; then

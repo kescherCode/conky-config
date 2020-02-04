@@ -21,7 +21,8 @@ On the right side, it shows general system details, the battery status (which ca
 
 Requirements:
 - **conky** ~~(what? a config for conky need conky? impossible.)~~
-- **yay** (optional, for reliable update checking on Manjaro, Arch, and other pacman-using distros. Can be replaced with checkupdates and checkupdates-aur respectively, but I've found these to be quite unreliable on my systems.)
+- **checkupdates** - For Manjaro, this is already in the `pacman` package, so you should not need to do anything. Arch users, please install `pacman-contrib`.
+- **yay** (optional, for AUR update checking on Manjaro, Arch, and other pacman-using distros. Can be replaced checkupdates-aur, but I've found it to be quite unreliable on my systems.)
 
 All files are intended to be located at ~/.config/conky/. If you want a different path, you will have to change it in each file.
 
