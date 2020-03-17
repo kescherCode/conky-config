@@ -20,7 +20,7 @@ rm ~/.config/conky/show_servers
 On the right side, it shows general system details, the battery status (which can be removed if you're using a desktop) as well as the remaining time to full charge or full discharge, CPU details, memory details and how many updates from official repos and the AUR are available.
 
 Requirements:
-- **conky** ~~(what? a config for conky need conky? impossible.)~~
+- **conky** ~~(what? a config for conky needs conky? impossible.)~~ You need either `conky-lua` or `conky-lua-nv`.
 - **checkupdates** - For Manjaro, this is already in the `pacman` package, so you should not need to do anything. Arch users, please install `pacman-contrib`.
 - **yay** (optional, for AUR update checking on Manjaro, Arch, and other pacman-using distros. Can be replaced checkupdates-aur, but I've found it to be quite unreliable on my systems.)
 
