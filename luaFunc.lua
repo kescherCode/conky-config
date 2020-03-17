@@ -1,15 +1,5 @@
 active_network_interface = false
 
---${if_match "${addr eno1}"!="No Address"} ${color0}Ethernet${alignr}${color1}${addr eno1}
---
--- ${color0}Down: ${color1}${downspeed eno1}/s ${alignr}${color0}Up: ${color1}${upspeed eno1}/s
--- ${color1}${downspeedgraph eno1 50,100 00592f 00b386 -t -l} ${alignr}${upspeedgraph eno1 50,100 00592f 00b386 -t -l}
--- ${endif}${if_match "${addr enp0s20u1}"!="No Address"}\
--- ${color0}USB${alignr}${color1}${addr enp0s20u1}
---
--- ${color0}Down: ${color1}${downspeed enp0s20u1}/s ${alignr}${color0}Up: ${color1}${upspeed enp0s20u1}/s
--- ${color1}${downspeedgraph enp0s20u1 50,100 00592f 00b386 -t -l} ${alignr}${upspeedgraph enp0s20u1 50,100 00592f 00b386 -t -l}${endif}
-
 function conky_drawnetworks(max_ifaces)
     local active_ifaces = {}
     if active_network_interface == false or tonumber(conky_parse("$updates")) % 2 == 0 then
