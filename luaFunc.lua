@@ -18,7 +18,8 @@ function conky_drawnetworks(max_ifaces)
                     draw_other_ifaces = draw_other_ifaces
                             .. " ${color0}" .. iface .. "${alignr}${color1}${addrs " .. iface .. "}" .. "\n\n"
                             .. " ${color0}▼ ${color1}${downspeed " .. iface .. "}/s ${alignr}${color0}▲ ${color1}${upspeed " .. iface .. "}/s\n"
-                            .. " ${color1}${downspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l} ${alignr}${upspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l}"
+                            .. " ${color1}${downspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l}"
+                            .. "${alignr}${upspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l}"
                             .. "\n"
                     if i < table.maxn(active_ifaces) and i ~= tonumber(max_ifaces) then
                         draw_other_ifaces = draw_other_ifaces .. " ${voffset -15}$color0${stippled_hr 2}\n"
@@ -28,7 +29,7 @@ function conky_drawnetworks(max_ifaces)
             active_network_interface = draw_other_ifaces
             return active_network_interface
         else
-            active_network_interface = '${goto 10}${font FontAwesome}${font} ${color #00FF00}Network Interfaces $color \n${goto 50} Device not connected.\n'
+            active_network_interface = '${color2}No interfaces are connected'
         end
     end
     return active_network_interface
