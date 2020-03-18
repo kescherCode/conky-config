@@ -5,7 +5,7 @@ function conky_drawnetworks(max_ifaces)
     if active_network_interface == false or tonumber(conky_parse("$updates")) % 2 == 0 then
         local ifaces = io.popen('ip link | grep -Po --regexp "(?<=[0-9]: ).*"')
         for line in ifaces:lines() do
-            if string.find(line, "<BROADCAST") then
+            if string.find(line, "<BROADCAST") and string.find(line, ",UP") then
                 local iface = string.gsub(string.match(line, "^.*:"), ":", "")
                 table.insert(active_ifaces, iface)
             end
