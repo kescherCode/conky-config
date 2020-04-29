@@ -19,10 +19,10 @@ rm ~/.config/conky/show_servers
 
 On the right side, it shows general system details, the battery status (which can be removed if you're using a desktop) as well as the remaining time to full charge or full discharge, CPU details, memory details and how many updates from official repos and the AUR are available.
 
-Requirements:
-- **conky** ~~(what? a config for conky needs conky? impossible.)~~ You need either `conky-lua` or `conky-lua-nv`.
-- **checkupdates** - For Manjaro, this is already in the `pacman` package, so you should not need to do anything. Arch users, please install `pacman-contrib`.
-- **yay** (optional, for AUR update checking on Manjaro, Arch, and other pacman-based distros. Can be replaced with `checkupdates-aur`, but I've found it to be quite unreliable on my systems.)
+Dependencies:
+- `conky-lua-nv` (AUR/Manjaro repos) (`conky-lua` does NOT play well due to using a seperated lua version)
+- `pacman-contrib` - For `checkupdates` script needed to get update count. *(Arch only! Manjaro only needs `pacman`)*
+- `yay` (AUR/Manjaro repos) (for getting AUR update count) *[not needed if you don't use AUR packages]*
 
 All files are intended to be located at `~/.config/conky/`. If you want a different path, you will have to change it in each file.
 

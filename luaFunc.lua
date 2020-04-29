@@ -1,8 +1,8 @@
 active_network_interface = false
 
 function conky_drawnetworks(max_ifaces)
-    local active_ifaces = {}
-    if active_network_interface == false or tonumber(conky_parse("$updates")) % 2 == 0 then
+    if not active_network_interface or tonumber(conky_parse("$updates")) % 2 == 0 then
+        local active_ifaces = {}
         local ifaces = io.popen('ip link | grep -Po --regexp "(?<=[0-9]: ).*"')
         for line in ifaces:lines() do
             if string.find(line, "<BROADCAST") and string.find(line, ",UP") then
@@ -27,7 +27,6 @@ function conky_drawnetworks(max_ifaces)
                 end
             end
             active_network_interface = draw_other_ifaces
-            return active_network_interface
         else
             active_network_interface = '${color2}No interfaces are connected'
         end
