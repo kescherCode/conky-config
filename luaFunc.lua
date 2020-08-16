@@ -1,3 +1,5 @@
+#!/usr/bin/env lua
+
 active_network_interface = false
 
 function conky_drawnetworks(max_ifaces)
@@ -11,7 +13,7 @@ function conky_drawnetworks(max_ifaces)
             end
         end
         ifaces:close()
-        if table.maxn(active_ifaces) >= 1 then
+        if #active_ifaces >= 1 then
             local draw_other_ifaces = ''
             for i, iface in pairs(active_ifaces) do
                 if i <= tonumber(max_ifaces) then
@@ -21,7 +23,7 @@ function conky_drawnetworks(max_ifaces)
                             .. " ${color1}${downspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l}"
                             .. "${alignr}${upspeedgraph " .. iface .. " 50,100 00592f 00b386 -t -l}"
                             .. "\n"
-                    if i < table.maxn(active_ifaces) and i ~= tonumber(max_ifaces) then
+                    if i < #active_ifaces and i ~= tonumber(max_ifaces) then
                         draw_other_ifaces = draw_other_ifaces .. " ${voffset -15}$color0${stippled_hr 2}\n"
                     end
                 end
